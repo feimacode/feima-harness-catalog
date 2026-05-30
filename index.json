@@ -1,0 +1,202 @@
+{
+	"version": 1,
+	"updated": "2026-05-30T05:43:27.747Z",
+	"providers": [
+		{
+			"name": "feima-awesome-harness",
+			"source": "catalogs/feima-awesome-harness/catalog.json",
+			"trust": "official"
+		}
+	],
+	"skills": [
+		{
+			"id": "incident-triage",
+			"name": "Incident Triage",
+			"description": "A skill for systematically triaging production incidents - gather context, assess severity, propose containment",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"incident",
+				"triage",
+				"devops",
+				"sre"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 1
+		},
+		{
+			"id": "auto-test",
+			"name": "Auto-Test",
+			"description": "Universal testing principles for writing, reviewing, or diagnosing any automated test regardless of scope or framework",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"testing",
+				"quality",
+				"principles"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "unit-test",
+			"name": "Unit Test",
+			"description": "Writing and reviewing unit tests that test a single function, class, or module in isolation with all external dependencies replaced by test doubles",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"testing",
+				"unit",
+				"mocking"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "integration-test",
+			"name": "Integration Test",
+			"description": "Writing and reviewing tests that verify a real integration boundary such as database queries, message queue interactions, or external service calls",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"testing",
+				"integration",
+				"database",
+				"infrastructure"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "e2e-test",
+			"name": "E2E Test",
+			"description": "Writing and reviewing end-to-end tests that verify observable user-facing behaviour through the full stack with no mocks",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"testing",
+				"e2e",
+				"browser",
+				"user-flow"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "contract-test",
+			"name": "Contract Test",
+			"description": "Writing and reviewing contract tests that verify the agreement between a service consumer and a service provider",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"testing",
+				"contract",
+				"api",
+				"schema"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "performance-test",
+			"name": "Performance Test",
+			"description": "Writing and reviewing performance tests that measure latency, throughput, resource utilisation, or scalability under load",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"testing",
+				"performance",
+				"load",
+				"slo"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "repo-init",
+			"name": "Repo Init",
+			"description": "Interactive repo setup wizard for initializing a new repository, setting up project conventions, configuring dev tooling, and choosing tech stack",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"setup",
+				"init",
+				"wizard",
+				"project"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "ai-config",
+			"name": "AI Config",
+			"description": "Manage AI assistant config files across tools - initializing AI configs for a new repo, detecting drift between multiple co-existing AI config files",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"ai",
+				"config",
+				"copilot",
+				"claude",
+				"cursor"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		}
+	],
+	"prompts": [
+		{
+			"id": "incident-commander",
+			"name": "Incident Commander",
+			"description": "An agent role for coordinating incident response across multiple specialists",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"incident",
+				"coordination",
+				"agent"
+			],
+			"type": "prompt",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 1
+		},
+		{
+			"id": "status-update",
+			"name": "Status Update",
+			"description": "A prompt template for incident status updates",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"incident",
+				"communication"
+			],
+			"type": "prompt",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 1
+		}
+	],
+	"flows": [
+		{
+			"id": "war-room-triage",
+			"name": "War Room Triage",
+			"description": "Multi-role incident triage: Commander, Recent Changes, App, Infra, Data layers",
+			"source": "github:feima/awesome-harness",
+			"tags": [
+				"incident",
+				"staged",
+				"devops",
+				"sre"
+			],
+			"category": "operations",
+			"orchestration": "staged",
+			"roles": 6,
+			"type": "flow",
+			"uses_skills": [
+				"incident-triage"
+			],
+			"uses_prompts": [
+				"incident-commander",
+				"status-update"
+			],
+			"provider": "feima-awesome-harness"
+		}
+	]
+}

@@ -1,0 +1,35 @@
+name: Build Catalog Index
+
+on:
+  push:
+    branches: [main]
+    paths: ['catalogs/**']
+  pull_request:
+    branches: [main]
+    paths: ['catalogs/**']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Build index
+        run: node scripts/build-index.js
+      
+      - name: Commit index
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add index.json
+          git commit -m 'Update index.json' || echo 'No changes to commit'
+          git push
