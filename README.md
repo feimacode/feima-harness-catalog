@@ -158,5 +158,5 @@ Wrote index.json with 12 entries
 
 ## Related
 
-- [feima-awesome-harness](https://github.com/feima/awesome-harness) - Official harness content
-- [CATALOG_ECOSYSTEM.md](https://github.com/feima/copilot-ai-flow/blob/main/docs/CATALOG_ECOSYSTEM.md) - Architecture documentation
+- [feima-awesome-harness](https://github.com/feimacode/awesome-harness) - Official harness content
+- [CATALOG_ECOSYSTEM.md](https://github.com/feimacode/copilot-ai-flow/blob/main/docs/CATALOG_ECOSYSTEM.md) - Architecture documentation

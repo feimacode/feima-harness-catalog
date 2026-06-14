@@ -1,0 +1,98 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://feima.dev/schemas/catalog.json",
+	"title": "Harness Catalog Entry",
+	"description": "A provider's catalog of harness items — skills, prompts, and flows.",
+	"type": "object",
+	"required": ["provider", "updated"],
+	"properties": {
+		"provider": {
+			"type": "string",
+			"description": "Unique namespace for this catalog entry (e.g., 'feima-awesome-harness'). Must match the directory name under catalogs/."
+		},
+		"updated": {
+			"type": "string",
+			"format": "date-time",
+			"description": "ISO 8601 timestamp of last update."
+		},
+		"skills": {
+			"type": "array",
+			"items": { "$ref": "#/$defs/skill" }
+		},
+		"prompts": {
+			"type": "array",
+			"items": { "$ref": "#/$defs/prompt" }
+		},
+		"flows": {
+			"type": "array",
+			"items": { "$ref": "#/$defs/flow" }
+		}
+	},
+	"$defs": {
+		"skill": {
+			"type": "object",
+			"required": ["id", "name", "description", "source", "tags", "type"],
+			"properties": {
+				"id": { "type": "string", "description": "Unique skill identifier within the provider namespace." },
+				"name": { "type": "string", "description": "Human-readable display name." },
+				"description": { "type": "string", "description": "What this skill does. Shown in browse results." },
+				"source": {
+					"type": "string",
+					"description": "URI pointing to the skill. Format: gist:<id>, github:<owner>/<repo>, or pkg:<marketplace>/<plugin>.",
+					"examples": ["gist:abc123", "github:feimacode/feima-awesome-harness"]
+				},
+				"tags": {
+					"type": "array",
+					"items": { "type": "string" },
+					"description": "Searchable keywords for discovery."
+				},
+				"type": { "type": "string", "const": "skill" }
+			}
+		},
+		"prompt": {
+			"type": "object",
+			"required": ["id", "name", "description", "source", "tags", "type"],
+			"properties": {
+				"id": { "type": "string", "description": "Unique prompt/agent identifier." },
+				"name": { "type": "string", "description": "Human-readable display name." },
+				"description": { "type": "string" },
+				"source": { "type": "string", "description": "URI pointing to the prompt. Same format as skills." },
+				"tags": { "type": "array", "items": { "type": "string" } },
+				"type": { "type": "string", "const": "prompt" }
+			}
+		},
+		"flow": {
+			"type": "object",
+			"required": ["id", "name", "description", "source", "tags", "orchestration", "roles", "type"],
+			"properties": {
+				"id": { "type": "string", "description": "Unique flow identifier." },
+				"name": { "type": "string" },
+				"description": { "type": "string" },
+				"source": { "type": "string", "description": "URI pointing to the flow." },
+				"tags": { "type": "array", "items": { "type": "string" } },
+				"category": { "type": "string", "description": "Optional broad grouping (e.g., 'operations', 'testing')." },
+				"orchestration": {
+					"type": "string",
+					"enum": ["sequence", "staged", "fork-join"],
+					"description": "Execution pattern: sequential pipeline, staged iteration, or parallel fork-join."
+				},
+				"roles": {
+					"type": "integer",
+					"minimum": 1,
+					"description": "Number of distinct roles in the flow."
+				},
+				"type": { "type": "string", "const": "flow" },
+				"uses_skills": {
+					"type": "array",
+					"items": { "type": "string" },
+					"description": "IDs of skills referenced by this flow (within the same provider)."
+				},
+				"uses_prompts": {
+					"type": "array",
+					"items": { "type": "string" },
+					"description": "IDs of prompts/agents referenced by this flow."
+				}
+			}
+		}
+	}
+}

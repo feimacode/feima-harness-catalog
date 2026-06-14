@@ -1,0 +1,54 @@
+name: Process Harness Issue
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  process:
+    if: contains(github.event.issue.labels.*.name, 'harness-publish')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Parse provider from title
+        id: parse
+        run: |
+          TITLE="${{ github.event.issue.title }}"
+          PROVIDER=$(echo "$TITLE" | sed 's/^\[harness-publish\] *//')
+          echo "provider=$PROVIDER" >> $GITHUB_OUTPUT
+          echo "Provider: $PROVIDER"
+
+      - name: Validate issue has provider
+        if: steps.parse.outputs.provider == ''
+        run: |
+          echo "❌ Could not parse provider from issue title."
+          echo "   Title must be: [harness-publish] <provider-name>"
+          exit 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --production
+
+      - name: Process issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PROVIDER: ${{ steps.parse.outputs.provider }}
+        run: node scripts/process-harness-issue.js
+
+      - name: Trigger index rebuild
+        if: success()
+        run: |
+          # The index rebuild is triggered by push to catalogs/ via build-index.yml
+          echo "✓ Index rebuild will be triggered by push"

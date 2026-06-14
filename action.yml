@@ -1,0 +1,55 @@
+name: 'Harness Publish'
+description: 'Publish harness skills, agents, prompts, and flows as fine-grained GitHub Gists'
+author: 'feima'
+branding:
+  icon: 'upload-cloud'
+  color: 'purple'
+
+inputs:
+  provider:
+    description: 'Publisher name (e.g., feima-awesome-harness) — used as catalog namespace'
+    required: true
+  gist_token:
+    description: 'GitHub personal access token with "gist" scope (not required for catalog_only mode)'
+    required: false
+    default: ''
+  dry_run:
+    description: 'If true, show what would be published without creating Gists'
+    required: false
+    default: 'false'
+  force:
+    description: 'If true, publish all items even if unchanged (bypass content hash check)'
+    required: false
+    default: 'false'
+  catalog_only:
+    description: 'If true, skip Gist publishing — only scan repo, build catalog.json, and submit issue'
+    required: false
+    default: 'false'
+  source:
+    description: 'Source prefix for catalog-only mode (e.g., github:owner/repo). If omitted, auto-derives from provider.'
+    required: false
+    default: ''
+
+outputs:
+  skills_published:
+    description: 'Number of skills newly published or updated'
+  skills_skipped:
+    description: 'Number of skills skipped (unchanged)'
+  prompts_published:
+    description: 'Number of prompts/agents newly published or updated'
+  prompts_skipped:
+    description: 'Number of prompts/agents skipped (unchanged)'
+  flows_published:
+    description: 'Number of flows newly published or updated'
+  flows_skipped:
+    description: 'Number of flows skipped (unchanged)'
+  total_changed:
+    description: 'Total number of items published or updated'
+  total_skipped:
+    description: 'Total number of items skipped'
+  issue_url:
+    description: 'URL of the catalog issue, if one was submitted'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

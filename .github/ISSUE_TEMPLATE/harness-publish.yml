@@ -1,0 +1,44 @@
+name: Harness Catalog Entry
+description: Submit or update your harness catalog entry for the feima catalog
+title: "[harness-publish] "
+labels: ["harness-publish"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to register or update your harness in the feima catalog.
+        After submission, the catalog bot will validate and process your entry.
+
+  - type: input
+    id: provider
+    attributes:
+      label: Provider name
+      description: Your catalog provider name — must match the `provider` field in catalog.json
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What changed? (optional)
+      description: Human-readable summary of what was added, removed, or updated
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: catalog_json
+    attributes:
+      label: catalog.json
+      description: Paste your catalog.json content below, or drag & drop the file as an attachment
+      render: json
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: This is my own harness content and I have the right to publish it
+          required: true
