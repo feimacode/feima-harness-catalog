@@ -142,9 +142,19 @@ async function main() {
 			`- Prompts: ${(catalog.prompts || []).length}`,
 			`- Flows: ${(catalog.flows || []).length}`,
 			'',
-			'The catalog index will be rebuilt automatically.',
+			'Changes have been committed to the catalog. Closing issue.',
 		].join('\n'),
 	});
+
+	// Close the issue
+	await octokit.rest.issues.update({
+		owner: OWNER,
+		repo: REPO,
+		issue_number: ISSUE_NUMBER,
+		state: 'closed',
+	});
+
+	console.log('✓ Issue closed');
 
 	console.log('✓ Done');
 }
