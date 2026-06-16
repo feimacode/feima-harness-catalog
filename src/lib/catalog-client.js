@@ -89,47 +89,49 @@ function createCatalogClient(githubToken) {
 	async function submitCatalogIssue(provider, catalog, counts) {
 		const titlePattern = `[harness-publish] ${provider}`;
 
-		// 1. Close older open issues for this provider
+		// 1. Find and close older open issues for this provider
 		try {
 			const existing = await octokit.rest.issues.listForRepo({
 				owner: CATALOG_REPO.owner,
 				repo: CATALOG_REPO.repo,
 				state: 'open',
-				labels: CATALOG_LABEL,
 				per_page: 100,
 			});
 
 			for (const issue of existing.data) {
 				if (issue.title === titlePattern ||
 					issue.title.startsWith(`[harness-publish] ${provider} `)) {
-					await octokit.rest.issues.createComment({
-						owner: CATALOG_REPO.owner,
-						repo: CATALOG_REPO.repo,
-						issue_number: issue.number,
-						body: '🔄 Superseded by a newer catalog submission.',
-					});
-					await octokit.rest.issues.update({
-						owner: CATALOG_REPO.owner,
-						repo: CATALOG_REPO.repo,
-						issue_number: issue.number,
-						state: 'closed',
-					});
+					try {
+						await octokit.rest.issues.createComment({
+							owner: CATALOG_REPO.owner,
+							repo: CATALOG_REPO.repo,
+							issue_number: issue.number,
+							body: '🔄 Superseded by a newer catalog submission.',
+						});
+						await octokit.rest.issues.update({
+							owner: CATALOG_REPO.owner,
+							repo: CATALOG_REPO.repo,
+							issue_number: issue.number,
+							state: 'closed',
+						});
+					} catch {
+						// Closing may fail for cross-repo tokens — non-fatal
+					}
 				}
 			}
-		} catch (e) {
+		} catch {
 			// Non-fatal — the new issue will still be opened
 		}
 
 		// 2. Build a human-readable issue body with embedded catalog.json
 		const issueBody = buildIssueBody(provider, catalog, counts);
 
-		// 3. Open the new issue
+		// 3. Open the new issue (no label — catalog repo's own workflow labels it)
 		const newIssue = await octokit.rest.issues.create({
 			owner: CATALOG_REPO.owner,
 			repo: CATALOG_REPO.repo,
 			title: titlePattern,
 			body: issueBody,
-			labels: [CATALOG_LABEL],
 		});
 
 		return { issueUrl: newIssue.data.html_url };

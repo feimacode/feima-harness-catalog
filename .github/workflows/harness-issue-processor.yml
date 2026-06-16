@@ -6,7 +6,7 @@ on:
 
 jobs:
   process:
-    if: contains(github.event.issue.labels.*.name, 'harness-publish')
+    if: startsWith(github.event.issue.title, '[harness-publish]') && !contains(github.event.issue.labels.*.name, 'harness-publish')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -29,6 +29,14 @@ jobs:
           echo "❌ Could not parse provider from issue title."
           echo "   Title must be: [harness-publish] <provider-name>"
           exit 1
+
+      - name: Label issue
+        run: |
+          gh issue edit ${{ github.event.issue.number }} \
+            --add-label 'harness-publish' \
+            --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
