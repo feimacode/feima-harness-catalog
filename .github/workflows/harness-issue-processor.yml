@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: npm install --production
 
-      - name: Process issue
+      - name: Process issue (write catalog)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
@@ -59,11 +59,13 @@ jobs:
         if: success()
         run: node scripts/build-index.js
 
-      - name: Commit index
+      - name: Commit catalog and index
         if: success()
         run: |
+          ISSUE_REF="#${{ github.event.issue.number }}"
+          PROVIDER="${{ steps.parse.outputs.provider }}"
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add index.json
-          git commit -m 'Update index.json' || echo 'No changes to commit'
+          git add catalogs/${PROVIDER}/catalog.json index.json
+          git commit -m "Process [harness-publish] ${PROVIDER} ${ISSUE_REF}" || echo 'No changes to commit'
           git push

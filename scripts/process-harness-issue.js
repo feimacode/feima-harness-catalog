@@ -129,22 +129,6 @@ async function main() {
 
 	console.log(`✓ Wrote catalogs/${PROVIDER}/catalog.json`);
 
-	// Commit and push
-	const { execSync } = require('child_process');
-	execSync('git config user.name "github-actions[bot]"', { cwd: process.env.GITHUB_WORKSPACE });
-	execSync('git config user.email "github-actions[bot]@users.noreply.github.com"', { cwd: process.env.GITHUB_WORKSPACE });
-
-	// Check if there are changes
-	const status = execSync('git status --porcelain', { cwd: process.env.GITHUB_WORKSPACE, encoding: 'utf8' });
-	if (!status.trim()) {
-		console.log('  (no changes to commit)');
-	} else {
-		execSync(`git add catalogs/${PROVIDER}/catalog.json`, { cwd: process.env.GITHUB_WORKSPACE });
-		execSync(`git commit -m "Process [harness-publish] ${PROVIDER} catalog"`, { cwd: process.env.GITHUB_WORKSPACE });
-		execSync('git push', { cwd: process.env.GITHUB_WORKSPACE });
-		console.log('✓ Committed and pushed');
-	}
-
 	// Add success comment
 	await octokit.rest.issues.createComment({
 		owner: OWNER,
