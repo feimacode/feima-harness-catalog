@@ -6,7 +6,7 @@ on:
 
 jobs:
   process:
-    if: startsWith(github.event.issue.title, '[harness-publish]') && !contains(github.event.issue.labels.*.name, 'harness-publish')
+    if: startsWith(github.event.issue.title, '[harness-publish]')
     runs-on: ubuntu-latest
     permissions:
       contents: write
