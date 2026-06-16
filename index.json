@@ -1,6 +1,6 @@
 {
 	"version": 1,
-	"updated": "2026-06-16T12:31:54.527Z",
+	"updated": "2026-06-16T12:46:01.085Z",
 	"providers": [
 		{
 			"name": "feima-awesome-harness",
@@ -10,73 +10,34 @@
 	],
 	"skills": [
 		{
-			"id": "incident-triage",
-			"name": "Incident Triage",
-			"description": "A skill for systematically triaging production incidents - gather context, assess severity, propose containment",
-			"source": "github:feima/awesome-harness",
+			"id": "ai-config",
+			"name": "AI Config Skill",
+			"description": "Detect, create, sync, and drift-check AI assistant configuration files in a repo. Works with whatever the user already has. Never introduces a skill-owned state file.",
+			"source": "gist:2a4320fc2719fb2215dfba6fc08c4b8d",
 			"tags": [
-				"incident",
-				"triage",
-				"devops",
-				"sre"
+				"ai",
+				"api",
+				"code-review",
+				"config",
+				"testing"
 			],
 			"type": "skill",
 			"provider": "feima-awesome-harness",
-			"used_in_flows": 1
+			"used_in_flows": 0
 		},
 		{
 			"id": "auto-test",
-			"name": "Auto-Test",
-			"description": "Universal testing principles for writing, reviewing, or diagnosing any automated test regardless of scope or framework",
-			"source": "github:feima/awesome-harness",
+			"name": "Auto-Test: Universal Testing Principles",
+			"description": "Core principles that apply to every automated test regardless of scope (unit, integration, e2e, contract, performance) or framework. Scope skills extend these; they do not replace them.",
+			"source": "gist:2262903af3b74428d052c6bb32bed99e",
 			"tags": [
-				"testing",
-				"quality",
-				"principles"
-			],
-			"type": "skill",
-			"provider": "feima-awesome-harness",
-			"used_in_flows": 0
-		},
-		{
-			"id": "unit-test",
-			"name": "Unit Test",
-			"description": "Writing and reviewing unit tests that test a single function, class, or module in isolation with all external dependencies replaced by test doubles",
-			"source": "github:feima/awesome-harness",
-			"tags": [
-				"testing",
-				"unit",
-				"mocking"
-			],
-			"type": "skill",
-			"provider": "feima-awesome-harness",
-			"used_in_flows": 0
-		},
-		{
-			"id": "integration-test",
-			"name": "Integration Test",
-			"description": "Writing and reviewing tests that verify a real integration boundary such as database queries, message queue interactions, or external service calls",
-			"source": "github:feima/awesome-harness",
-			"tags": [
-				"testing",
-				"integration",
-				"database",
-				"infrastructure"
-			],
-			"type": "skill",
-			"provider": "feima-awesome-harness",
-			"used_in_flows": 0
-		},
-		{
-			"id": "e2e-test",
-			"name": "E2E Test",
-			"description": "Writing and reviewing end-to-end tests that verify observable user-facing behaviour through the full stack with no mocks",
-			"source": "github:feima/awesome-harness",
-			"tags": [
-				"testing",
+				"ai",
+				"api",
+				"code-review",
+				"config",
 				"e2e",
-				"browser",
-				"user-flow"
+				"performance",
+				"testing"
 			],
 			"type": "skill",
 			"provider": "feima-awesome-harness",
@@ -85,13 +46,74 @@
 		{
 			"id": "contract-test",
 			"name": "Contract Test",
-			"description": "Writing and reviewing contract tests that verify the agreement between a service consumer and a service provider",
-			"source": "github:feima/awesome-harness",
+			"description": "A contract test verifies the **agreement** between a consumer and a provider — not their internal behaviour. The consumer defines what it expects from the provider; the provider verifies it can mee...",
+			"source": "gist:07456b88df0935ba4eb7d1e32b017586",
 			"tags": [
-				"testing",
-				"contract",
+				"ai",
 				"api",
-				"schema"
+				"code-review",
+				"contract",
+				"devops",
+				"e2e",
+				"integration",
+				"testing"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "e2e-test",
+			"name": "E2E Test",
+			"description": "An end-to-end test verifies that a complete user-facing flow works correctly through the full stack. Nothing is mocked. The test interacts with the system the same way a real user or client would a...",
+			"source": "gist:3b6ff8899e230e312fac17947ddd8660",
+			"tags": [
+				"ai",
+				"api",
+				"code-review",
+				"database",
+				"devops",
+				"e2e",
+				"integration",
+				"react",
+				"testing",
+				"unit"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 0
+		},
+		{
+			"id": "incident-triage",
+			"name": "Incident Triage",
+			"description": "A skill for systematically triaging production incidents.",
+			"source": "gist:660f827c82f4968704591d0d87fb3a47",
+			"tags": [
+				"ai",
+				"code-review",
+				"config",
+				"devops",
+				"incident",
+				"testing"
+			],
+			"type": "skill",
+			"provider": "feima-awesome-harness",
+			"used_in_flows": 1
+		},
+		{
+			"id": "integration-test",
+			"name": "Integration Test",
+			"description": "An integration test verifies that two or more components work correctly when wired together through a real boundary — a database, queue, HTTP client, or file system. The use of real infrastructure ...",
+			"source": "gist:23273b83c8560bf5c3d2e22ff2dc385f",
+			"tags": [
+				"ai",
+				"code-review",
+				"database",
+				"e2e",
+				"integration",
+				"python",
+				"testing",
+				"unit"
 			],
 			"type": "skill",
 			"provider": "feima-awesome-harness",
@@ -100,13 +122,18 @@
 		{
 			"id": "performance-test",
 			"name": "Performance Test",
-			"description": "Writing and reviewing performance tests that measure latency, throughput, resource utilisation, or scalability under load",
-			"source": "github:feima/awesome-harness",
+			"description": "A performance test measures non-functional properties — latency, throughput, concurrency capacity, resource consumption — under a defined load profile. Results are statistical; pass/fail is determi...",
+			"source": "gist:dc589074ee8d7fea7784760fe014be86",
 			"tags": [
-				"testing",
+				"ai",
+				"code-review",
+				"config",
+				"debugging",
+				"devops",
+				"e2e",
 				"performance",
-				"load",
-				"slo"
+				"python",
+				"testing"
 			],
 			"type": "skill",
 			"provider": "feima-awesome-harness",
@@ -114,30 +141,42 @@
 		},
 		{
 			"id": "repo-init",
-			"name": "Repo Init",
-			"description": "Interactive repo setup wizard for initializing a new repository, setting up project conventions, configuring dev tooling, and choosing tech stack",
-			"source": "github:feima/awesome-harness",
+			"name": "Repo Init Wizard",
+			"description": "Guide the user through a structured interview to establish all foundational decisions for a new repository. At the end, produce a reviewed summary and offer to generate config files, instructions, ...",
+			"source": "gist:877c8331ce5d49c027973e71d6db13d5",
 			"tags": [
-				"setup",
-				"init",
-				"wizard",
-				"project"
+				"ai",
+				"api",
+				"code-review",
+				"config",
+				"database",
+				"devops",
+				"e2e",
+				"python",
+				"react",
+				"testing",
+				"typescript",
+				"unit"
 			],
 			"type": "skill",
 			"provider": "feima-awesome-harness",
 			"used_in_flows": 0
 		},
 		{
-			"id": "ai-config",
-			"name": "AI Config",
-			"description": "Manage AI assistant config files across tools - initializing AI configs for a new repo, detecting drift between multiple co-existing AI config files",
-			"source": "github:feima/awesome-harness",
+			"id": "unit-test",
+			"name": "Unit Test",
+			"description": "A unit test verifies the behaviour of one unit (function, class, or module) in complete isolation. Every dependency that crosses an architectural boundary is replaced by a test double. Speed and de...",
+			"source": "gist:21076727d0a7cfcd86241866b0bd6199",
 			"tags": [
 				"ai",
+				"code-review",
 				"config",
-				"copilot",
-				"claude",
-				"cursor"
+				"database",
+				"integration",
+				"python",
+				"testing",
+				"typescript",
+				"unit"
 			],
 			"type": "skill",
 			"provider": "feima-awesome-harness",
@@ -146,27 +185,30 @@
 	],
 	"prompts": [
 		{
-			"id": "incident-commander",
-			"name": "Incident Commander",
-			"description": "An agent role for coordinating incident response across multiple specialists",
-			"source": "github:feima/awesome-harness",
+			"id": "status-update",
+			"name": "Status Update",
+			"description": "A prompt template for incident status updates.",
+			"source": "gist:854fb7e1a26f2ecd8486676a70811b51",
 			"tags": [
-				"incident",
-				"coordination",
-				"agent"
+				"ai",
+				"code-review",
+				"incident"
 			],
 			"type": "prompt",
 			"provider": "feima-awesome-harness",
-			"used_in_flows": 1
+			"used_in_flows": 0
 		},
 		{
-			"id": "status-update",
-			"name": "Status Update",
-			"description": "A prompt template for incident status updates",
-			"source": "github:feima/awesome-harness",
+			"id": "incident-commander",
+			"name": "Incident Commander",
+			"description": "An agent role for coordinating incident response across multiple specialists.",
+			"source": "gist:6ecd84394d20ef96b8a48ed3516f7f57",
 			"tags": [
-				"incident",
-				"communication"
+				"ai",
+				"code-review",
+				"config",
+				"devops",
+				"incident"
 			],
 			"type": "prompt",
 			"provider": "feima-awesome-harness",
@@ -178,23 +220,18 @@
 			"id": "war-room-triage",
 			"name": "War Room Triage",
 			"description": "Multi-role incident triage: Commander, Recent Changes, App, Infra, Data layers",
-			"source": "github:feima/awesome-harness",
+			"source": "gist:0699f09c59e06c6005ca674bca18fa0d",
 			"tags": [
-				"incident",
-				"staged",
-				"devops",
-				"sre"
+				"staged"
 			],
-			"category": "operations",
 			"orchestration": "staged",
-			"roles": 6,
+			"roles": 8,
 			"type": "flow",
 			"uses_skills": [
 				"incident-triage"
 			],
 			"uses_prompts": [
-				"incident-commander",
-				"status-update"
+				"incident-commander"
 			],
 			"provider": "feima-awesome-harness"
 		}
