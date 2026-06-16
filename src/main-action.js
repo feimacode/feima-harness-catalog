@@ -16,6 +16,7 @@ async function run() {
 	try {
 		const provider = core.getInput('provider', { required: true });
 		const gistToken = core.getInput('gist_token') || '';
+		const githubToken = core.getInput('github_token') || '';
 		const dryRun = core.getBooleanInput('dry_run') || false;
 		const force = core.getBooleanInput('force') || false;
 		const catalogOnly = core.getBooleanInput('catalog_only') || false;
@@ -38,6 +39,7 @@ async function run() {
 			repoRoot,
 			provider,
 			gistToken: gistToken || undefined,
+			githubToken: githubToken || undefined,
 			dryRun,
 			force,
 			catalogOnly,

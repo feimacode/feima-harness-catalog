@@ -13,6 +13,10 @@ inputs:
     description: 'GitHub personal access token with "gist" scope (not required for catalog_only mode)'
     required: false
     default: ''
+  github_token:
+    description: 'GitHub token for catalog issue submission (needs issues:write on the catalog repo). Defaults to GITHUB_TOKEN.'
+    required: false
+    default: ${{ github.token }}
   dry_run:
     description: 'If true, show what would be published without creating Gists'
     required: false
