@@ -55,8 +55,15 @@ jobs:
           PROVIDER: ${{ steps.parse.outputs.provider }}
         run: node scripts/process-harness-issue.js
 
-      - name: Trigger index rebuild
+      - name: Build index
+        if: success()
+        run: node scripts/build-index.js
+
+      - name: Commit index
         if: success()
         run: |
-          # The index rebuild is triggered by push to catalogs/ via build-index.yml
-          echo "✓ Index rebuild will be triggered by push"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add index.json
+          git commit -m 'Update index.json' || echo 'No changes to commit'
+          git push
