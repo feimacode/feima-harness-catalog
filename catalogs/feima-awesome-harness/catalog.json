@@ -1,12 +1,12 @@
 {
 	"provider": "feima-awesome-harness",
-	"updated": "2026-06-16T11:24:44.144Z",
+	"updated": "2026-06-20T04:27:30.741Z",
 	"skills": [
 		{
 			"id": "ai-config",
 			"name": "AI Config Skill",
 			"description": "Detect, create, sync, and drift-check AI assistant configuration files in a repo. Works with whatever the user already has. Never introduces a skill-owned state file.",
-			"source": "gist:2a4320fc2719fb2215dfba6fc08c4b8d",
+			"source": "gist:947b7e16acd32f32f480863d265892d6",
 			"tags": [
 				"ai",
 				"api",
@@ -20,7 +20,7 @@
 			"id": "auto-test",
 			"name": "Auto-Test: Universal Testing Principles",
 			"description": "Core principles that apply to every automated test regardless of scope (unit, integration, e2e, contract, performance) or framework. Scope skills extend these; they do not replace them.",
-			"source": "gist:2262903af3b74428d052c6bb32bed99e",
+			"source": "gist:ac42d663a47603412aef2c0ca7ed5ce9",
 			"tags": [
 				"ai",
 				"api",
@@ -36,7 +36,7 @@
 			"id": "contract-test",
 			"name": "Contract Test",
 			"description": "A contract test verifies the **agreement** between a consumer and a provider — not their internal behaviour. The consumer defines what it expects from the provider; the provider verifies it can mee...",
-			"source": "gist:07456b88df0935ba4eb7d1e32b017586",
+			"source": "gist:fd1648c7298e6eeba72ca14c89d0a9f9",
 			"tags": [
 				"ai",
 				"api",
@@ -53,7 +53,7 @@
 			"id": "e2e-test",
 			"name": "E2E Test",
 			"description": "An end-to-end test verifies that a complete user-facing flow works correctly through the full stack. Nothing is mocked. The test interacts with the system the same way a real user or client would a...",
-			"source": "gist:3b6ff8899e230e312fac17947ddd8660",
+			"source": "gist:552f2f39c8e06eed72b6bf6df50edbbc",
 			"tags": [
 				"ai",
 				"api",
@@ -72,7 +72,7 @@
 			"id": "incident-triage",
 			"name": "Incident Triage",
 			"description": "A skill for systematically triaging production incidents.",
-			"source": "gist:660f827c82f4968704591d0d87fb3a47",
+			"source": "gist:7ac2562733938c7a49c67e6e13f7abe8",
 			"tags": [
 				"ai",
 				"code-review",
@@ -87,7 +87,7 @@
 			"id": "integration-test",
 			"name": "Integration Test",
 			"description": "An integration test verifies that two or more components work correctly when wired together through a real boundary — a database, queue, HTTP client, or file system. The use of real infrastructure ...",
-			"source": "gist:23273b83c8560bf5c3d2e22ff2dc385f",
+			"source": "gist:a41545b61872870646676919f107a596",
 			"tags": [
 				"ai",
 				"code-review",
@@ -104,7 +104,7 @@
 			"id": "performance-test",
 			"name": "Performance Test",
 			"description": "A performance test measures non-functional properties — latency, throughput, concurrency capacity, resource consumption — under a defined load profile. Results are statistical; pass/fail is determi...",
-			"source": "gist:dc589074ee8d7fea7784760fe014be86",
+			"source": "gist:a0f6beedf5a1e1d6eb4edf2aaeec4d83",
 			"tags": [
 				"ai",
 				"code-review",
@@ -122,7 +122,7 @@
 			"id": "repo-init",
 			"name": "Repo Init Wizard",
 			"description": "Guide the user through a structured interview to establish all foundational decisions for a new repository. At the end, produce a reviewed summary and offer to generate config files, instructions, ...",
-			"source": "gist:877c8331ce5d49c027973e71d6db13d5",
+			"source": "gist:961ce234af048da7b7b900f910d71f81",
 			"tags": [
 				"ai",
 				"api",
@@ -143,7 +143,7 @@
 			"id": "unit-test",
 			"name": "Unit Test",
 			"description": "A unit test verifies the behaviour of one unit (function, class, or module) in complete isolation. Every dependency that crosses an architectural boundary is replaced by a test double. Speed and de...",
-			"source": "gist:21076727d0a7cfcd86241866b0bd6199",
+			"source": "gist:eec697280dda19b3d09f64a9cd8ac4ac",
 			"tags": [
 				"ai",
 				"code-review",
@@ -163,7 +163,7 @@
 			"id": "status-update",
 			"name": "Status Update",
 			"description": "A prompt template for incident status updates.",
-			"source": "gist:854fb7e1a26f2ecd8486676a70811b51",
+			"source": "gist:5c2064724a5964e69a2c969ff61b28c1",
 			"tags": [
 				"ai",
 				"code-review",
@@ -175,7 +175,7 @@
 			"id": "incident-commander",
 			"name": "Incident Commander",
 			"description": "An agent role for coordinating incident response across multiple specialists.",
-			"source": "gist:6ecd84394d20ef96b8a48ed3516f7f57",
+			"source": "gist:588e8671e22ee14b0328d9a479bc680d",
 			"tags": [
 				"ai",
 				"code-review",
@@ -188,22 +188,170 @@
 	],
 	"flows": [
 		{
-			"id": "war-room-triage",
-			"name": "War Room Triage",
-			"description": "Multi-role incident triage: Commander, Recent Changes, App, Infra, Data layers",
-			"source": "gist:0699f09c59e06c6005ca674bca18fa0d",
+			"id": "backlog-ranking",
+			"name": "Backlog Ranking",
+			"description": "Priority ordering with value, risk, dependency, and effort dimensions",
+			"source": "gist:3e0740fc7edac7dd51242eaa361f1f0e",
 			"tags": [
+				"agile",
+				"backlog",
+				"prioritization",
+				"ranking",
+				"sequence",
+				"sprint-planning"
+			],
+			"orchestration": "sequence",
+			"roles": 5,
+			"type": "flow",
+			"uses_skills": [],
+			"uses_prompts": []
+		},
+		{
+			"id": "code-review",
+			"name": "Code Review Discussion",
+			"description": "Multi-perspective code review with separate lenses for correctness, security, and final verdict",
+			"source": "gist:3bd8def742137cd4da057c496aa59c3a",
+			"tags": [
+				"code-review",
+				"correctness",
+				"quality",
+				"review",
+				"security",
+				"sequence"
+			],
+			"orchestration": "sequence",
+			"roles": 3,
+			"type": "flow",
+			"uses_skills": [],
+			"uses_prompts": []
+		},
+		{
+			"id": "pr-description",
+			"name": "PR Description Generator",
+			"description": "Automated PR description generation from diff analysis",
+			"source": "gist:ada123afd717b6d7f639e3a0e5d13826",
+			"tags": [
+				"automation",
+				"description",
+				"documentation",
+				"pr",
+				"pull-request",
+				"sequence"
+			],
+			"orchestration": "sequence",
+			"roles": 3,
+			"type": "flow",
+			"uses_skills": [],
+			"uses_prompts": []
+		},
+		{
+			"id": "sdd-openspec-full-cycle",
+			"name": "SDD + OpenSpec Full Cycle",
+			"description": "End-to-end pipeline: one human gate → staged SDD specification with LLM critics → OpenSpec change scaffolding → phased implementation → archive. Idea to merged PR without leaving the conversation.",
+			"source": "gist:fc1616227d3e927bb6286c04ec068c53",
+			"tags": [
+				"architecture",
+				"autonomous",
+				"full-cycle",
+				"implementation",
+				"long-running",
+				"openspec",
+				"requirements",
+				"sdd",
+				"spec-kit",
+				"staged"
+			],
+			"orchestration": "staged",
+			"roles": 12,
+			"type": "flow",
+			"uses_skills": [
+				"openspec-apply-change",
+				"openspec-archive-change",
+				"openspec-propose",
+				"sdd-terminology"
+			],
+			"uses_prompts": []
+		},
+		{
+			"id": "sdd-spec-kit",
+			"name": "SDD Spec-Kit Driven Development",
+			"description": "Agentic SDD pipeline: staged execution with LLM auto-review, from raw idea to implementation roadmap. One human gate — initial clarification.",
+			"source": "gist:43a740e307584ca4617713ddb5fd3cea",
+			"tags": [
+				"architecture",
+				"autonomous",
+				"long-running",
+				"requirements",
+				"sdd",
+				"spec-kit",
 				"staged"
 			],
 			"orchestration": "staged",
 			"roles": 8,
 			"type": "flow",
 			"uses_skills": [
-				"incident-triage"
+				"sdd-terminology"
 			],
-			"uses_prompts": [
-				"incident-commander"
-			]
+			"uses_prompts": []
+		},
+		{
+			"id": "story-estimation",
+			"name": "Sprint Story Estimation",
+			"description": "Virtual scrum team story sizing with perspectives from Product Owner, Dev Lead, QA Lead, Senior Dev, Senior QA, Dev, and QA",
+			"source": "gist:09998ee79ccd39035fea21747e58d62b",
+			"tags": [
+				"agile",
+				"estimation",
+				"scrum",
+				"sequence",
+				"sprint-planning",
+				"story-points",
+				"team"
+			],
+			"orchestration": "sequence",
+			"roles": 8,
+			"type": "flow",
+			"uses_skills": [],
+			"uses_prompts": []
+		},
+		{
+			"id": "test-writing",
+			"name": "Test Writing",
+			"description": "Comprehensive test generation with adversarial edge case hunting",
+			"source": "gist:7a2aa48fd4df01e5c018ffa9e74bc00c",
+			"tags": [
+				"quality",
+				"sequence",
+				"tdd",
+				"test-generation",
+				"testing",
+				"unit-tests"
+			],
+			"orchestration": "sequence",
+			"roles": 3,
+			"type": "flow",
+			"uses_skills": [],
+			"uses_prompts": []
+		},
+		{
+			"id": "war-room-triage",
+			"name": "War-Room Triage",
+			"description": "Incident response with human-gate triage, parallel investigation, and resolution planning",
+			"source": "gist:380b2885ad13ffe1a986971befe71613",
+			"tags": [
+				"debugging",
+				"emergency",
+				"incident",
+				"production",
+				"staged",
+				"triage",
+				"war-room"
+			],
+			"orchestration": "staged",
+			"roles": 6,
+			"type": "flow",
+			"uses_skills": [],
+			"uses_prompts": []
 		}
 	]
 }
